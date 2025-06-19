@@ -1,97 +1,186 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 📦 ProductAppCLI
 
-# Getting Started
+A clean React Native CLI demo app implementing a simple e-commerce flow with navigation, custom components, styled-components, asset handling, and TypeScript support.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## ✨ Features
 
-## Step 1: Start Metro
+* 🛠️ **React Native CLI** (version 0.80.0) – no Expo dependency
+* 🤭 **React Navigation (Native Stack)** – navigation between three screens
+* 👩‍🎨 **Styled-components** – component-level styling
+* 📂 **Flat list of mock products** with filtering and search
+* 📷 **Image assets** (e.g., product images, icons) managed with local files
+* ⚖️ **TypeScript** – full type safety for navigation and components
+* 🔍 **Modular code structure**:
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+  * `src/screens`
+  * `src/components`
+  * `src/styles`
+  * `src/data`
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+---
 
-```sh
-# Using npm
-npm start
+## 🚀 Quick Start
 
-# OR using Yarn
-yarn start
+### Prerequisites
+
+* Node.js ≥ 18
+* CocoaPods (on macOS for iOS builds)
+* Xcode (for iOS) or Android Studio & emulator (for Android)
+
+### Setup
+
+```bash
+git clone https://github.com/Guisantos1991/ProductAppCLI.git
+cd ProductAppCLI
+npm install
+cd ios && pod install && cd ..
 ```
 
-## Step 2: Build and run your app
+### Run the App
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+* **iOS**:
 
-### Android
+  ```bash
+  npx react-native run-ios
+  ```
+* **Android** (start emulator first):
 
-```sh
-# Using npm
-npm run android
+  ```bash
+  npx react-native run-android
+  ```
 
-# OR using Yarn
-yarn android
+### Metro Bundler
+
+```bash
+npm start -- --reset-cache
 ```
 
-### iOS
+---
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+## 📂 Project Structure
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+```
+/src
+ ├─ components/       # reusable UI elements
+ │     └─ button.tsx, searchBar.tsx
+ ├─ data/             # mock product data (Products.ts)
+ ├─ screens/          # "Index", "MainScreen", "ProductCard"
+ └─ styles/           # styled-components files
+      └─ HomeStyles.ts, MainStyles.ts, ProductsStyles.ts, cardStyles.ts
+/App.tsx              # root navigator (StackNavigator)
+/routes/index.ts      # RootStackParamList type definitions
 ```
 
-Then, and every time you update your native dependencies, run:
+---
 
-```sh
-bundle exec pod install
+## ✅ Navigation Types (TypeScript)
+
+Defined in `routes/index.ts`:
+
+```ts
+export type RootStackParamList = {
+  Index: undefined;
+  Main: undefined;
+  Product: { productId: number };
+};
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+---
 
-```sh
-# Using npm
-npm run ios
+## 🎨 Assets
 
-# OR using Yarn
-yarn ios
+* Fonts: custom `.ttf` fonts in `assets/font/`
+* Images: local `.jpg` and `.png` assets in `assets/images/` and `assets/icon/`
+* Icons: local images used inside `TouchableOpacity` buttons
+
+---
+
+## 📈 Future Improvements
+
+* ✅ Use real backend/API
+* ✅ Add cart state management (e.g., Redux or Context)
+* ✅ Improve UI/UX with icon library and animations
+* ✅ Add offline image handling or thumbnail caching
+* ✅ Add unit tests with Jest
+
+---
+
+# 🔀 Versão em Português
+
+## 📦 ProductAppCLI
+
+App de demonstração em React Native CLI com fluxo básico de e‑commerce: navegação entre telas, filtros de produtos e detalhes.
+
+## ⚖️ Funcionalidades
+
+* React Native CLI (v0.80.0), sem Expo
+* Navegação com React Navigation (Native Stack)
+* Estilização com styled‑components
+* Lista de produtos fictícios com busca e filtros
+* Assets de imagens e ícones locais
+* Suporte TypeScript para navegação
+* Estrutura modular de pastas
+
+## ⚡ Iniciando
+
+**Pré-requisitos**:
+
+* Node.js ≥ 18
+* CocoaPods (macOS)
+* Xcode ou Android Studio + emulador
+
+**Instalação**:
+
+```bash
+git clone https://github.com/Guisantos1991/ProductAppCLI.git
+cd ProductAppCLI
+npm install
+cd ios && pod install && cd ..
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+**Executando**:
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+* iOS:
 
-## Step 3: Modify your app
+  ```bash
+  npx react-native run-ios
+  ```
+* Android:
 
-Now that you have successfully run the app, let's make changes!
+  ```bash
+  npx react-native run-android
+  ```
+* Metro Bundler:
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+  ```bash
+  npm start -- --reset-cache
+  ```
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+## 📂 Estrutura
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+* `src/components/`: botões e searchBar reutilizáveis
+* `src/data/Products.ts`: dados fictícios
+* `src/screens/`: Index, MainScreen, ProductCard
+* `src/styles/`: styled‑components para cada tela
+* `App.tsx`: sistema de rotas
+* `routes/index.ts`: tipo `RootStackParamList`
 
-## Congratulations! :tada:
+## 🔌 Como usar
 
-You've successfully run and modified your React Native App. :partying_face:
+1. Abra o app
+2. Aperte **Get Start**
+3. Use busca e filtros
+4. Toque em um produto para ver detalhes
+5. Volte com o botão
 
-### Now what?
+---
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+## 💡 Contribuições bem-vindas!
 
-# Troubleshooting
+Aberto a sugestões, issues, PRs :)
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+---
 
-# Learn More
+## 📄 Licença
 
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Nenhuma especificada. Pode escolher MIT para uso público.
